@@ -1,0 +1,32 @@
+version: "3"
+services:
+  back:
+    container_name: strava-back
+    build: ./back
+    volumes:
+      - ./back:/usr/src/app/
+    expose:
+      - 3030
+    ports:
+      - "3030:3030"
+    links:
+      - db
+    command: npm start
+  front:
+    container_name: strava-front
+    build: ./front
+    volumes:
+      - ./front/src:/usr/src/app/src
+      - ./front/public:/usr/src/app/public
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    links:
+      - back
+    command: npm start
+  db:
+    container_name: strava-db
+    image: mongo
+    ports:
+      - "27017:27017"

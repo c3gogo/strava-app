@@ -1,9 +1,9 @@
 const axios = require("axios");
 
 const STRAVA_URL = "https://www.strava.com/api/v3";
-const ACCESS_TOKEN = "8e54143d58f9008bf3bd2c2a3b6c5ebff84e5739";
+const ACCESS_TOKEN = "8b3c36427bdd0d7ff74245d8fe1961b89131f5be";
 
-const Athlete = require('./../models/Athlete')
+const Athlete = require("./../models/Athlete");
 
 let config = {
   headers: {
@@ -20,11 +20,16 @@ const getAndSaveUser = async () => {
       lastname: result.data.lastname,
       city: result.data.city,
       sex: result.data.sex
-    }
-    Athlete.findOneAndUpdate({ username: newData.username }, newData, {upsert: true}, function(err, doc) {
-      if (err) throw err;
-      console.log('Succesfully saved.');
-  });
+    };
+    Athlete.findOneAndUpdate(
+      { username: newData.username },
+      newData,
+      { upsert: true },
+      function(err, doc) {
+        if (err) throw err;
+        console.log("Succesfully saved.");
+      }
+    );
   } catch (error) {
     throw error;
   }
