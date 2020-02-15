@@ -1,0 +1,18 @@
+schema {
+  query: RootQueryType
+}
+
+type Athlete {
+  id: ID
+  username: String
+  firstname: String
+  lastname: String
+  city: String
+  sex: String
+}
+
+type RootQueryType {
+  athletes: [Athlete]
+  athlete(id: ID): Athlete
+}
+
