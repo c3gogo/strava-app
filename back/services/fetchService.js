@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const STRAVA_URL = "https://www.strava.com/api/v3";
-const ACCESS_TOKEN = "8b3c36427bdd0d7ff74245d8fe1961b89131f5be";
+const ACCESS_TOKEN = "a153958b01a16bf20b6c3cef8aa186df2ad07c63";
 
 const Athlete = require("./../models/Athlete");
 

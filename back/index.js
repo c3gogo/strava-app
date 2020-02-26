@@ -3,12 +3,15 @@ const graphqlHTTP = require("express-graphql");
 const mongoose = require("mongoose");
 const schema = require("./schema/schema");
 const app = express();
+const cors = require('cors')
 
 const { getAndSaveUser } = require("./services/fetchService");
 
 mongoose.connect("mongodb://db:27017/strava-app", { useNewUrlParser: true });
 
 getAndSaveUser();
+
+app.use(cors())
 
 app.use(
   "/graphql",

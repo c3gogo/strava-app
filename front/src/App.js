@@ -1,11 +1,36 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import User from './user';
+import graphql from 'babel-plugin-relay/macro'
+import {
+  RelayEnvironmentProvider,
+  preloadQuery,
+} from 'react-relay/hooks'
+import RelayEnvironment from './RelayEnvironment'
 
-class App extends Component {
-  render() {
-    return <div className="App"></div>;
+const { Suspense } = React
+
+const UserQuery = graphql`
+  query AppUserQuery { 
+    athletes {
+      id,
+      username,
+      firstname,
+      lastname,
+      city,
+      sex
+    }
   }
+`
+const preloadedQuery = preloadQuery(RelayEnvironment, UserQuery)
+
+function App() {
+  return (
+    <RelayEnvironmentProvider environment={RelayEnvironment}>
+      <Suspense fallback={'loading...'}>
+        <User preloadedQuery={preloadedQuery} />
+      </Suspense>
+    </RelayEnvironmentProvider>
+  )
 }
 
 export default App;
