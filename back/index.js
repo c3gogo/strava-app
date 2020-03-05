@@ -5,11 +5,12 @@ const schema = require("./schema/schema");
 const app = express();
 const cors = require('cors')
 
-const { getAndSaveUser } = require("./services/fetchService");
+const { getAndSaveUser, getAndSaveActivities } = require("./services/fetchService");
 
-mongoose.connect("mongodb://db:27017/strava-app", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/strava-app", { useNewUrlParser: true });
 
-getAndSaveUser();
+//getAndSaveUser();
+//getAndSaveActivities(),
 
 app.use(cors())
 

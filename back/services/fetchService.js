@@ -1,9 +1,14 @@
 const axios = require("axios");
 
 const STRAVA_URL = "https://www.strava.com/api/v3";
-const ACCESS_TOKEN = "a153958b01a16bf20b6c3cef8aa186df2ad07c63";
+const ACCESS_TOKEN = "";
+const CLIENT_ID= ""
+const CLIENT_SECRET=""
+const AUTHORIZATION_CODE = "" 
 
 const Athlete = require("./../models/Athlete");
+const Activity = require("./../models/Activity");
+
 
 let config = {
   headers: {
@@ -35,6 +40,34 @@ const getAndSaveUser = async () => {
   }
 };
 
+const getAndSaveActivities = async () => {
+  try {
+    let result = await axios.get(`${STRAVA_URL}/activities`, config);
+
+    await Activity.remove({athleteId: "5e601a7f617205fd57a39acc"})
+    console.log(result)
+    result.data.forEach(activity => {
+      let newData = new Activity({
+        name: activity.name,
+        distance: activity.distance,
+        averageSpeed: activity.average_speed,
+        date: activity.start_date,
+        athleteId: "5e601a7f617205fd57a39acc"
+      });
+      newData.save(
+        function(err, doc) {
+          if (err) throw err;
+          console.log("Succesfully saved.");
+        }
+      );
+
+    })
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
-  getAndSaveUser
+  getAndSaveUser,
+  getAndSaveActivities
 };
