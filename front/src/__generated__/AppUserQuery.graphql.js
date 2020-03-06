@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash 8e6fd4c798e3b8767af2f1ef0338326f
+ * @relayHash c042fde1ed518207ccf8b19d5f612b54
  */
 
 /* eslint-disable */
@@ -18,6 +18,13 @@ export type AppUserQueryResponse = {|
     +lastname: ?string,
     +city: ?string,
     +sex: ?string,
+    +activities: ?$ReadOnlyArray<?{|
+      +id: ?string,
+      +name: ?string,
+      +date: ?string,
+      +averageSpeed: ?number,
+      +distance: ?number,
+    |}>,
   |}>
 |};
 export type AppUserQuery = {|
@@ -36,12 +43,26 @@ query AppUserQuery {
     lastname
     city
     sex
+    activities {
+      id
+      name
+      date
+      averageSpeed
+      distance
+    }
   }
 }
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = [
+var v0 = {
+  "kind": "ScalarField",
+  "alias": null,
+  "name": "id",
+  "args": null,
+  "storageKey": null
+},
+v1 = [
   {
     "kind": "LinkedField",
     "alias": null,
@@ -51,13 +72,7 @@ var v0 = [
     "concreteType": "Athlete",
     "plural": true,
     "selections": [
-      {
-        "kind": "ScalarField",
-        "alias": null,
-        "name": "id",
-        "args": null,
-        "storageKey": null
-      },
+      (v0/*: any*/),
       {
         "kind": "ScalarField",
         "alias": null,
@@ -92,6 +107,46 @@ var v0 = [
         "name": "sex",
         "args": null,
         "storageKey": null
+      },
+      {
+        "kind": "LinkedField",
+        "alias": null,
+        "name": "activities",
+        "storageKey": null,
+        "args": null,
+        "concreteType": "Activity",
+        "plural": true,
+        "selections": [
+          (v0/*: any*/),
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "name",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "date",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "averageSpeed",
+            "args": null,
+            "storageKey": null
+          },
+          {
+            "kind": "ScalarField",
+            "alias": null,
+            "name": "distance",
+            "args": null,
+            "storageKey": null
+          }
+        ]
       }
     ]
   }
@@ -104,24 +159,24 @@ return {
     "type": "RootQueryType",
     "metadata": null,
     "argumentDefinitions": [],
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "operation": {
     "kind": "Operation",
     "name": "AppUserQuery",
     "argumentDefinitions": [],
-    "selections": (v0/*: any*/)
+    "selections": (v1/*: any*/)
   },
   "params": {
     "operationKind": "query",
     "name": "AppUserQuery",
     "id": null,
-    "text": "query AppUserQuery {\n  athletes {\n    id\n    username\n    firstname\n    lastname\n    city\n    sex\n  }\n}\n",
+    "text": "query AppUserQuery {\n  athletes {\n    id\n    username\n    firstname\n    lastname\n    city\n    sex\n    activities {\n      id\n      name\n      date\n      averageSpeed\n      distance\n    }\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6119534e545b20042347088b4851976d';
+(node/*: any*/).hash = '55b40dae512abc19d399db1e04ccf655';
 
 module.exports = node;

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.0.2",
     "antd": "^3.26.11",
     "react": "0.0.0-experimental-241c4467e",
     "react-dom": "0.0.0-experimental-241c4467e",
@@ -21,11 +22,6 @@
     "relay": "relay-compiler --schema ./src/schema/schema.graphql --src ./src/ --watchman false $@",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "babel": {
-    "plugins": [
-      "relay"
-    ]
   },
   "browserslist": {
     "production": [
